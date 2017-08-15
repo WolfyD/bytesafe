@@ -39,6 +39,7 @@
 			this.btn_Stop = new System.Windows.Forms.Button();
 			this.btn_Exit = new System.Windows.Forms.Button();
 			this.btn_GSK = new System.Windows.Forms.Button();
+			this.cb_Decode = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// btn_Input
@@ -49,6 +50,7 @@
 			this.btn_Input.TabIndex = 0;
 			this.btn_Input.Text = "Input";
 			this.btn_Input.UseVisualStyleBackColor = true;
+			this.btn_Input.Click += new System.EventHandler(this.btn_Input_Click);
 			// 
 			// btn_Output
 			// 
@@ -58,6 +60,7 @@
 			this.btn_Output.TabIndex = 1;
 			this.btn_Output.Text = "Output";
 			this.btn_Output.UseVisualStyleBackColor = true;
+			this.btn_Output.Click += new System.EventHandler(this.btn_Output_Click);
 			// 
 			// label1
 			// 
@@ -109,6 +112,7 @@
 			this.btn_Start.TabIndex = 7;
 			this.btn_Start.Text = "Start";
 			this.btn_Start.UseVisualStyleBackColor = true;
+			this.btn_Start.Click += new System.EventHandler(this.btn_Start_Click);
 			// 
 			// btn_Stop
 			// 
@@ -127,6 +131,7 @@
 			this.btn_Exit.TabIndex = 9;
 			this.btn_Exit.Text = "Exit";
 			this.btn_Exit.UseVisualStyleBackColor = true;
+			this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
 			// 
 			// btn_GSK
 			// 
@@ -138,11 +143,23 @@
 			this.btn_GSK.UseVisualStyleBackColor = true;
 			this.btn_GSK.Click += new System.EventHandler(this.btn_GSK_Click);
 			// 
+			// cb_Decode
+			// 
+			this.cb_Decode.AutoSize = true;
+			this.cb_Decode.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.cb_Decode.Location = new System.Drawing.Point(526, 2);
+			this.cb_Decode.Name = "cb_Decode";
+			this.cb_Decode.Size = new System.Drawing.Size(64, 17);
+			this.cb_Decode.TabIndex = 11;
+			this.cb_Decode.Text = "Decode";
+			this.cb_Decode.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(592, 141);
+			this.Controls.Add(this.cb_Decode);
 			this.Controls.Add(this.btn_GSK);
 			this.Controls.Add(this.btn_Exit);
 			this.Controls.Add(this.btn_Stop);
@@ -174,6 +191,7 @@
 		private System.Windows.Forms.Button btn_Stop;
 		private System.Windows.Forms.Button btn_Exit;
 		private System.Windows.Forms.Button btn_GSK;
+		private System.Windows.Forms.CheckBox cb_Decode;
 	}
 }
 
