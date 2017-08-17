@@ -172,6 +172,7 @@
             this.btn_OpenKey.TabIndex = 12;
             this.btn_OpenKey.Text = "Open File";
             this.btn_OpenKey.UseVisualStyleBackColor = true;
+            this.btn_OpenKey.Click += new System.EventHandler(this.btn_OpenKey_Click);
             // 
             // Form1
             // 

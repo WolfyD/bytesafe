@@ -106,11 +106,23 @@ namespace WolfPaw_SimpleByteCrypt2
 				byte[] buffer = new byte[1000000];
 				if(buffer.Length > fileSize) { buffer = new byte[fileSize]; }
 				string tmp = "";
-				while (r.Read(buffer, 0, buffer.Length) > 0)
+				while (true)
 				{
-					try
+                    int len = r.Read(buffer, 0, buffer.Length);
+
+                    if(len == 0)
+                    {
+                        break;
+                    }
+
+                    try
 					{
-						var chars = (IEnumerable<byte>)buffer;
+                        //byte[] bbb = new byte[len];
+                        //buffer.CopyTo(bbb, 0);
+                        //buffer = null;
+                        //buffer = bbb;
+
+                        var chars = (IEnumerable<byte>)buffer;
 						byte[] bytes = new byte[chars.Count()];
 						int tmpByte = 0;
 						//tmp += new string(((IEnumerable<char>)buffer).ToArray());	--AZT A KURVA EZ GYORS VOLT....
@@ -174,5 +186,21 @@ namespace WolfPaw_SimpleByteCrypt2
 			run = false;
 			Application.Exit();
 		}
-	}
+
+        private void btn_OpenKey_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string[] f = File.ReadAllLines(ofd.FileName);
+                foreach(String s in f)
+                {
+                    if(s.Length > 0 && !s.StartsWith("#"))
+                    {
+                        tb_Pwd.Text += s.Trim();
+                    }
+                }
+            }
+        }
+    }
 }
