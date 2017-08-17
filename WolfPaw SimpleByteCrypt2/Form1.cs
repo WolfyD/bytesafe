@@ -31,6 +31,17 @@ namespace WolfPaw_SimpleByteCrypt2
 		{
 			f_SecureKeyGen fskg = new f_SecureKeyGen();
 			fskg.ShowDialog();
+            if (fskg.OK && fskg.generatedKey != "")
+            {
+                string f = "#==========START OF WOLFPAW SECURE KEY==========#\r\n" + fskg.generatedKey + "\r\n#===========END OF WOLFPAW SECURE KEY===========#";
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Title = "Save your secure key file";
+                sfd.Filter = "WolfPaw Secure Key  (*.wsk)|*.wsk|" + "Text file  (*.txt)|*.txt|" + "All Files  (*.*)|*.*";
+                if(sfd.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(sfd.FileName, f);
+                }
+            }
 		}
 
 		private void btn_Input_Click(object sender, EventArgs e)
@@ -88,16 +99,18 @@ namespace WolfPaw_SimpleByteCrypt2
 
 		public void start()
 		{
-			using(StreamReader r = new StreamReader(File.OpenRead(fileInput)))
+            
+
+			using(var r = new FileStream(fileInput,FileMode.Open))
 			{
-				char[] buffer = new char[1000000];
-				if(buffer.Length > fileSize) { buffer = new char[fileSize]; }
+				byte[] buffer = new byte[1000000];
+				if(buffer.Length > fileSize) { buffer = new byte[fileSize]; }
 				string tmp = "";
 				while (r.Read(buffer, 0, buffer.Length) > 0)
 				{
 					try
 					{
-						var chars = (IEnumerable<char>)buffer;
+						var chars = (IEnumerable<byte>)buffer;
 						byte[] bytes = new byte[chars.Count()];
 						int tmpByte = 0;
 						//tmp += new string(((IEnumerable<char>)buffer).ToArray());	--AZT A KURVA EZ GYORS VOLT....
@@ -105,7 +118,7 @@ namespace WolfPaw_SimpleByteCrypt2
 						int i = 0;
 						int x = 0;
 
-						foreach(char b in chars)
+						foreach(byte b in chars)
 						{
 							if (decode)
 							{

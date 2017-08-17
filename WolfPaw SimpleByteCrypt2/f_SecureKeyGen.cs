@@ -4,8 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,14 +16,20 @@ namespace WolfPaw_SimpleByteCrypt2
 {
 	public partial class f_SecureKeyGen : Form
 	{
-		public Point lastMousePos = new Point();
-		public Point MousePos = new Point();
+		Point lastMousePos = new Point();
+		Point MousePos = new Point();
 
-		public List<Point> points = new List<Point>();
-		public List<TimeSpan> times = new List<TimeSpan>();
-		public List<TimeSpan> Clicktimes = new List<TimeSpan>();
+		List<Point> points = new List<Point>();
+		List<TimeSpan> times = new List<TimeSpan>();
+		List<TimeSpan> Clicktimes = new List<TimeSpan>();
 
-		Stopwatch sw = new Stopwatch();
+        public string generatedKey = "";
+        public bool OK = false;
+
+        SHA512CryptoServiceProvider sha5 = new SHA512CryptoServiceProvider();
+        SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
+
+        Stopwatch sw = new Stopwatch();
 		Stopwatch Clicksw = new Stopwatch();
 
 
@@ -46,6 +55,8 @@ namespace WolfPaw_SimpleByteCrypt2
 			{
 				g.DrawLine(Pens.Red, lastMousePos, MousePos);
 			}
+
+            lbl_XYZ.Text = "X: " + e.Location.X + " Y:" + e.Location.Y + " Clicks:" + points.Count();
 		}
 
 		private void p_SKG_MouseEnter(object sender, EventArgs e)
@@ -63,7 +74,10 @@ namespace WolfPaw_SimpleByteCrypt2
 		private void p_SKG_MouseClick(object sender, MouseEventArgs e)
 		{
 			points.Add(e.Location);
-			Clicktimes.Add(Clicksw.Elapsed);
+            times.Add(sw.Elapsed);
+            sw.Reset();
+            sw.Start();
+            Clicktimes.Add(Clicksw.Elapsed);
 			Clicksw.Reset();
 			Clicksw.Start();
 
@@ -79,10 +93,27 @@ namespace WolfPaw_SimpleByteCrypt2
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			times.Add(sw.Elapsed);
-			sw.Reset();
-			sw.Start();
-		}
+            int rr = new Random().Next(0, 11);
+
+            int xx = new Random(Environment.TickCount).Next(0, 1000) < 501 ? rr : rr * -1;
+            Thread.Sleep(10);
+            int yy = new Random(Environment.TickCount + 1).Next(0, 1000) > 500 ? rr : rr * -1;
+
+            points.Add(PointToClient(new Point(Cursor.Position.X + rr, Cursor.Position.Y + rr)));
+
+            using (Graphics g = Graphics.FromHwnd(p_SKG.Handle))
+            {
+                var ee = PointToClient(Cursor.Position);
+                
+                Rectangle r = new Rectangle(ee.X + xx - 5, ee.Y + yy - 5, 10, 10);
+                Rectangle r2 = new Rectangle(ee.X + xx - 2, ee.Y + yy - 2, 4, 4);
+
+                g.DrawEllipse(Pens.Blue, r);
+                g.FillEllipse(Brushes.Blue, r2);
+
+                g.DrawLine(Pens.Blue, new Point(ee.X + xx, ee.Y + yy), new Point(ee.X + xx + 1, ee.Y + yy + 1));
+            }
+        }
 
 		private void btn_GenKey_Click(object sender, EventArgs e)
 		{
@@ -90,16 +121,124 @@ namespace WolfPaw_SimpleByteCrypt2
 
 			string tmp = "";
 
-			foreach(var v in times)
-			{
+            foreach (var v in times)
+            {
+                tmp += v.TotalMilliseconds.ToString().Substring(v.TotalMilliseconds.ToString().IndexOf(',') + 1);
+            }
+            foreach (var v in points)
+            {
+                tmp += v.X + "" + v.Y;
+            }
+            foreach (var v in Clicktimes)
+            {
+                tmp += v.TotalMilliseconds.ToString().Substring(v.TotalMilliseconds.ToString().IndexOf(',') + 1);
+            }
 
-				tmp += v.TotalMilliseconds.ToString().Substring(v.TotalMilliseconds.ToString().IndexOf(',') + 1);
 
-			}
 
-			MessageBox.Show(tmp);
+            //MessageBox.Show(tmp);
 
-			timer1.Start();
+            int tLen = tmp.Length;
+            int splitw = tLen / 8;
+
+            List<string> tmpList0 = new List<string>();
+            string sha5s = "";
+            List<string> sha5List0 = new List<string>();
+            List<byte[]> sha1s = new List<byte[]>();
+
+            string ttmp = "";
+
+            for (int i = 0; i < 8; i++)
+            {
+                if(tmp == "") { break; }
+                if (tmp.Length >= splitw * 2)
+                {
+                    ttmp = tmp.Substring(0, splitw);
+                }else
+                {
+                    ttmp = tmp.Substring(0);
+                }
+
+                tmpList0.Add(ttmp);
+                tmp = tmp.Remove(0, ttmp.Length);
+            }
+
+            string tmp2 = "";
+
+            foreach(string s in tmpList0)
+            {
+                sha5s += Encoding.UTF8.GetString(sha5.ComputeHash(Encoding.UTF8.GetBytes(s)));
+            }
+
+            int sha5len = sha5s.Length;
+            int sha1wid = sha5len / 16;
+            string shatmp = "";
+
+            for (int i = 0; i < 16; i++)
+            {
+                if (sha5s == "") { break; }
+                if (sha5s.Length >= sha1wid * 2)
+                {
+                    shatmp = sha5s.Substring(0, sha1wid);
+                }
+                else
+                {
+                    shatmp = sha5s.Substring(0);
+                }
+
+                sha5List0.Add(shatmp);
+                sha5s = sha5s.Remove(0, shatmp.Length);
+            }
+
+            string FinalKey = "";
+
+            foreach(string s in sha5List0)
+            {
+                sha1s.Add(sha1.ComputeHash(Encoding.UTF8.GetBytes(s)));
+            }
+
+            foreach(byte[] bb in sha1s)
+            {
+                foreach(byte b in bb)
+                {
+                    Thread.Sleep(2);
+                    int ii = new Random(Environment.TickCount).Next(0, 10000);
+                    FinalKey += ii < 5000 ? b.ToString("X2").ToUpper() : b.ToString("X2").ToLower();
+                }
+            }
+
+            /*
+            MessageBox.Show(FinalKey);
+
+            int ii = 0;
+            string extra = "";
+            while(ii < FinalKey.Length)
+            {
+                extra += FinalKey.Substring(ii, 10) + "\r\n";
+                ii += 10;
+            }
+
+            File.AppendAllText("c:\\x\\tempFile.txt", extra);
+            */
+
+            generatedKey = FinalKey;
+
+            btn_UseKey.Enabled = true;
+
+            timer1.Start();
 		}
-	}
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            generatedKey = "";
+            OK = false;
+            this.Close();
+        }
+
+        private void btn_UseKey_Click(object sender, EventArgs e)
+        {
+            OK = true;
+            this.Close();
+        }
+    }
 }
