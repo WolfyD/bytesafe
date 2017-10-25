@@ -93,11 +93,13 @@ namespace WolfPaw_SimpleByteCrypt2
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-            int rr = new Random().Next(0, 11);
+            int rr = new Random().Next(0, 30);
+			Thread.Sleep(1);
+			int rr2 = new Random().Next(0, 30);
 
             int xx = new Random(Environment.TickCount).Next(0, 1000) < 501 ? rr : rr * -1;
             Thread.Sleep(10);
-            int yy = new Random(Environment.TickCount + 1).Next(0, 1000) > 500 ? rr : rr * -1;
+            int yy = new Random(Environment.TickCount + 1).Next(0, 1000) > 500 ? rr2 : rr2 * -1;
 
             points.Add(PointToClient(new Point(Cursor.Position.X + rr, Cursor.Position.Y + rr)));
 
@@ -206,20 +208,6 @@ namespace WolfPaw_SimpleByteCrypt2
                     FinalKey += ii < 5000 ? b.ToString("X2").ToUpper() : b.ToString("X2").ToLower();
                 }
             }
-
-            /*
-            MessageBox.Show(FinalKey);
-
-            int ii = 0;
-            string extra = "";
-            while(ii < FinalKey.Length)
-            {
-                extra += FinalKey.Substring(ii, 10) + "\r\n";
-                ii += 10;
-            }
-
-            File.AppendAllText("c:\\x\\tempFile.txt", extra);
-            */
 
             generatedKey = FinalKey;
 
