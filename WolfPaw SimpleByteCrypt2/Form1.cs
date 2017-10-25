@@ -21,6 +21,7 @@ namespace WolfPaw_SimpleByteCrypt2
 		long fileSize = 0;
 		bool run = false;
 		bool decode = false;
+		List<string> files = new List<string>();
 
 		public Form1()
 		{
@@ -63,13 +64,25 @@ namespace WolfPaw_SimpleByteCrypt2
 
 			if(ofd.ShowDialog() == DialogResult.OK)
 			{
-				fileInput = ofd.FileName;
-				lbl_Input.Text = fileInput;
-				FileInfo fi = new FileInfo(fileInput);
-				fileSize = fi.Length;
-				
+				openFile(ofd.FileName);
+			}
+		}
 
-				fi = null;
+		public void openFile(String fn)
+		{
+			files.Add(fn);
+			setLabels();
+		}
+
+		public void setLabels()
+		{
+			if (files.Count == 1)
+			{
+				lbl_Input.Text = files[0];
+			}
+			else
+			{
+				lbl_Input.Text = files.Count + " files";
 			}
 		}
 
@@ -86,22 +99,61 @@ namespace WolfPaw_SimpleByteCrypt2
 			}
 		}
 
+		public string getfn(string fn)
+		{
+			fn = fn.Substring(fn.LastIndexOf("\\") + 1);
+			return fn;
+		}
+
 		private void btn_Start_Click(object sender, EventArgs e)
+		{
+			if (cb_Decode.Checked)
+			{
+				if(Properties.Settings.Default.s_DecodedDir == "" || !Directory.Exists(Properties.Settings.Default.s_DecodedDir))
+				{ MessageBox.Show("It seems that you haven't filled out your Decode output directory.\r\nPlease make sure you do.","Check your settings!"); button1_Click(null, null); return; }
+			}
+			else
+			{
+				if (Properties.Settings.Default.s_EncodedDir == "" || !Directory.Exists(Properties.Settings.Default.s_EncodedDir))
+				{ MessageBox.Show("It seems that you haven't filled out your Encode output directory.\r\nPlease make sure you do.", "Check your settings!"); button1_Click(null, null); return; }
+			}
+			foreach (String s in files)
+			{
+				if (File.Exists(s))
+				{
+					string fo = "";
+					if (cb_Decode.Checked)
+					{
+						fo = Properties.Settings.Default.s_DecodedDir + "\\" + getfn(s);
+					}
+					else
+					{
+						fo = Properties.Settings.Default.s_EncodedDir + "\\" + getfn(s);
+					}
+
+					//fileInput = s;
+
+					_start(s, fo);
+				}
+			}
+		}
+
+		public void _start(string s, string outs)
 		{
 			codeKey = tb_Pwd.Text;
 			decode = cb_Decode.Checked;
 
-			if (fileInput != "" && File.Exists(fileInput) && fileOutput != "" && codeKey != "")
+			if (s != "" && File.Exists(s) && outs != "" && codeKey != "")
 			{
 				run = true;
-				Thread t = new Thread(new ThreadStart(start));
+				Thread t = new Thread(() => start(s, outs));
 				t.Start();
 			}
 		}
 
-		public void start()
+		public void start(string input, string output)
 		{
-			using(var r = new FileStream(fileInput,FileMode.Open))
+			using(var r = new FileStream(input,FileMode.Open))
 			{
 				long mainBufferLen = Properties.Settings.Default.s_defaultBufferLength;
 				long _len = r.Length;
@@ -139,12 +191,10 @@ namespace WolfPaw_SimpleByteCrypt2
 							if (decode)
 							{
 								tmpByte = b - codeKey[x];
-								//while (tmpByte < 0) { tmpByte += 255; }
 							}
 							else
 							{
 								tmpByte = b + codeKey[x];
-								//while (tmpByte > 255) { tmpByte -= 255; }
 							}
 							bytes[i] = (byte)tmpByte;
 							i++;
@@ -153,9 +203,9 @@ namespace WolfPaw_SimpleByteCrypt2
 							if(x >= codeKey.Length) { x = 0; }
 						}
 
-						if (!File.Exists(fileOutput)) { File.Create(fileOutput).Close(); }
+						if (!File.Exists(output)) { File.Create(output).Close(); }
 
-						using (var w = new FileStream(fileOutput, FileMode.Append,FileAccess.Write))
+						using (var w = new FileStream(output, FileMode.Append,FileAccess.Write))
 						{
 							w.Write(bytes, 0, bytes.Length);
 						}
@@ -210,22 +260,13 @@ namespace WolfPaw_SimpleByteCrypt2
 				string s = "";
 				foreach (String x in ss)
 				{
-					if (File.Exists(x) && !Directory.Exists(x))
+					if (File.Exists(x))
 					{
-						s = x;
-						lbl_Input.Text = s;
-						fileInput = s;
-
-						string filePath = s.Substring(0, s.LastIndexOf("\\") + 1);
-						string fileBaseName = s.Substring(s.LastIndexOf("\\") + 1);
-
-						string pre = "ENCODED_";
-
-						if (cb_Decode.Checked) { pre = "DECODED_"; }
-
-						fileOutput = filePath + pre + fileBaseName;
-						lbl_Output.Text = fileOutput;
-						break;
+						files.Add(x);
+					}
+					else if (Directory.Exists(x))
+					{
+						files.AddRange(Directory.GetFiles(x, "*.*", SearchOption.AllDirectories));
 					}
 				}
 			}
@@ -271,6 +312,46 @@ namespace WolfPaw_SimpleByteCrypt2
 		{
 			f_Settings fs = new f_Settings();
 			fs.ShowDialog();
+		}
+
+		private void btn_MultipleFiles_Click(object sender, EventArgs e)
+		{
+			OpenFileDialog ofd = new OpenFileDialog();
+			ofd.Multiselect = true;
+			ofd.Title = "Select your input file";
+
+			if (ofd.ShowDialog() == DialogResult.OK)
+			{
+				files = ofd.FileNames.ToList();
+				setLabels();
+			}
+		}
+
+		private void btn_Directory_Click(object sender, EventArgs e)
+		{
+			FolderBrowserDialog fbd = new FolderBrowserDialog();
+			if (fbd.ShowDialog() == DialogResult.OK)
+			{
+				files = Directory.GetFiles(fbd.SelectedPath, "*.*", SearchOption.AllDirectories).ToList();
+				setLabels();
+			}
+		}
+
+		private void btn_OpenMulti_Click(object sender, EventArgs e)
+		{
+			contextMenuStrip1.Show(btn_OpenMulti, new Point(0, 0));
+		}
+
+		private void btn_FileList_Click(object sender, EventArgs e)
+		{
+			if (files.Count > 0)
+			{
+				f_FileList fl = new f_FileList();
+				fl.files = files;
+				fl.ShowDialog();
+				files = fl.files;
+				setLabels();
+			}
 		}
 	}
 }

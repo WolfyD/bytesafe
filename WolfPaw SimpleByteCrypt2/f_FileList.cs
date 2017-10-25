@@ -13,13 +13,26 @@ namespace WolfPaw_SimpleByteCrypt2
 {
 	public partial class f_FileList : Form
 	{
-		List<string> files { get; set; }
+		public List<string> files { get; set; }
 
 		public f_FileList()
 		{
 			InitializeComponent();
 
 			Load += F_FileList_Load;
+
+			lv_List.MouseClick += Lv_List_MouseClick;
+		}
+
+		private void Lv_List_MouseClick(object sender, MouseEventArgs e)
+		{
+			if(e.Button == MouseButtons.Right)
+			{
+				if(lv_List.FocusedItem != null)
+				{
+					((myLVI)lv_List.FocusedItem).showcms();
+				}
+			}
 		}
 
 		private void F_FileList_Load(object sender, EventArgs e)
@@ -36,6 +49,7 @@ namespace WolfPaw_SimpleByteCrypt2
 					lvi.files = files;
 					lvi.Text = s;
 					lvi.SubItems.Add(i + "");
+					lv_List.Items.Add(lvi);
 				}
 			}
 		}
@@ -53,7 +67,12 @@ namespace WolfPaw_SimpleByteCrypt2
 			cms.Items.Add("Remove File", null, cmd_onclick);
 		}
 
-		private void cmd_onclick(object sender, EventArgs e)
+		public void showcms()
+		{
+			cms.Show(parent, 0, 0);
+		}
+
+		public void cmd_onclick(object sender, EventArgs e)
 		{
 			try
 			{

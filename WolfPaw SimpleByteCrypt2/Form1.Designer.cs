@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.btn_Input = new System.Windows.Forms.Button();
 			this.btn_Output = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
@@ -41,13 +42,19 @@
 			this.cb_Decode = new System.Windows.Forms.CheckBox();
 			this.btn_OpenKey = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
+			this.btn_OpenMulti = new System.Windows.Forms.Button();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.btn_MultipleFiles = new System.Windows.Forms.ToolStripMenuItem();
+			this.btn_Directory = new System.Windows.Forms.ToolStripMenuItem();
+			this.btn_FileList = new System.Windows.Forms.Button();
+			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// btn_Input
 			// 
 			this.btn_Input.Location = new System.Drawing.Point(12, 12);
 			this.btn_Input.Name = "btn_Input";
-			this.btn_Input.Size = new System.Drawing.Size(75, 23);
+			this.btn_Input.Size = new System.Drawing.Size(57, 23);
 			this.btn_Input.TabIndex = 0;
 			this.btn_Input.Text = "Input";
 			this.btn_Input.UseVisualStyleBackColor = true;
@@ -181,12 +188,57 @@
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// btn_OpenMulti
+			// 
+			this.btn_OpenMulti.Location = new System.Drawing.Point(67, 12);
+			this.btn_OpenMulti.Name = "btn_OpenMulti";
+			this.btn_OpenMulti.Size = new System.Drawing.Size(20, 23);
+			this.btn_OpenMulti.TabIndex = 14;
+			this.btn_OpenMulti.Text = "↓";
+			this.btn_OpenMulti.UseVisualStyleBackColor = true;
+			this.btn_OpenMulti.Click += new System.EventHandler(this.btn_OpenMulti_Click);
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_MultipleFiles,
+            this.btn_Directory});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(175, 48);
+			// 
+			// btn_MultipleFiles
+			// 
+			this.btn_MultipleFiles.Name = "btn_MultipleFiles";
+			this.btn_MultipleFiles.Size = new System.Drawing.Size(174, 22);
+			this.btn_MultipleFiles.Text = "Open multiple files";
+			this.btn_MultipleFiles.Click += new System.EventHandler(this.btn_MultipleFiles_Click);
+			// 
+			// btn_Directory
+			// 
+			this.btn_Directory.Name = "btn_Directory";
+			this.btn_Directory.Size = new System.Drawing.Size(174, 22);
+			this.btn_Directory.Text = "Open directory";
+			this.btn_Directory.Click += new System.EventHandler(this.btn_Directory_Click);
+			// 
+			// btn_FileList
+			// 
+			this.btn_FileList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_FileList.Location = new System.Drawing.Point(466, 108);
+			this.btn_FileList.Name = "btn_FileList";
+			this.btn_FileList.Size = new System.Drawing.Size(75, 23);
+			this.btn_FileList.TabIndex = 16;
+			this.btn_FileList.Text = "File List";
+			this.btn_FileList.UseVisualStyleBackColor = true;
+			this.btn_FileList.Click += new System.EventHandler(this.btn_FileList_Click);
+			// 
 			// Form1
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(768, 143);
+			this.Controls.Add(this.btn_FileList);
+			this.Controls.Add(this.btn_OpenMulti);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.btn_OpenKey);
 			this.Controls.Add(this.cb_Decode);
@@ -205,6 +257,7 @@
 			this.Text = "WolfPaw Simple Keyed Byte Encryption";
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -225,6 +278,11 @@
 		private System.Windows.Forms.CheckBox cb_Decode;
         private System.Windows.Forms.Button btn_OpenKey;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btn_OpenMulti;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem btn_MultipleFiles;
+		private System.Windows.Forms.ToolStripMenuItem btn_Directory;
+		private System.Windows.Forms.Button btn_FileList;
 	}
 }
 
