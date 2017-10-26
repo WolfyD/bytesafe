@@ -12,7 +12,7 @@ namespace WolfPaw_SimpleByteCrypt2.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -80,6 +80,90 @@ namespace WolfPaw_SimpleByteCrypt2.Properties {
             }
             set {
                 this["s_DateToFilename"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool y_MixPass {
+            get {
+                return ((bool)(this["y_MixPass"]));
+            }
+            set {
+                this["y_MixPass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool y_ShiftPasswordSections {
+            get {
+                return ((bool)(this["y_ShiftPasswordSections"]));
+            }
+            set {
+                this["y_ShiftPasswordSections"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int y_SectionShiftValue {
+            get {
+                return ((int)(this["y_SectionShiftValue"]));
+            }
+            set {
+                this["y_SectionShiftValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool y_ShiftBytes {
+            get {
+                return ((bool)(this["y_ShiftBytes"]));
+            }
+            set {
+                this["y_ShiftBytes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int y_ByteShiftValue {
+            get {
+                return ((int)(this["y_ByteShiftValue"]));
+            }
+            set {
+                this["y_ByteShiftValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool y_MixFileBytes {
+            get {
+                return ((bool)(this["y_MixFileBytes"]));
+            }
+            set {
+                this["y_MixFileBytes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool y_HiddenPassword {
+            get {
+                return ((bool)(this["y_HiddenPassword"]));
+            }
+            set {
+                this["y_HiddenPassword"] = value;
             }
         }
     }
