@@ -47,6 +47,7 @@
 			this.btn_MultipleFiles = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_Directory = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_FileList = new System.Windows.Forms.Button();
+			this.btn_Test = new System.Windows.Forms.Button();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -231,12 +232,25 @@
 			this.btn_FileList.UseVisualStyleBackColor = true;
 			this.btn_FileList.Click += new System.EventHandler(this.btn_FileList_Click);
 			// 
+			// btn_Test
+			// 
+			this.btn_Test.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btn_Test.Location = new System.Drawing.Point(331, 110);
+			this.btn_Test.Name = "btn_Test";
+			this.btn_Test.Size = new System.Drawing.Size(75, 23);
+			this.btn_Test.TabIndex = 17;
+			this.btn_Test.Text = "TEST";
+			this.btn_Test.UseVisualStyleBackColor = true;
+			this.btn_Test.Visible = false;
+			this.btn_Test.Click += new System.EventHandler(this.btn_Test_Click);
+			// 
 			// Form1
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(768, 143);
+			this.Controls.Add(this.btn_Test);
 			this.Controls.Add(this.btn_FileList);
 			this.Controls.Add(this.btn_OpenMulti);
 			this.Controls.Add(this.button1);
@@ -283,6 +297,7 @@
 		private System.Windows.Forms.ToolStripMenuItem btn_MultipleFiles;
 		private System.Windows.Forms.ToolStripMenuItem btn_Directory;
 		private System.Windows.Forms.Button btn_FileList;
+		private System.Windows.Forms.Button btn_Test;
 	}
 }
 

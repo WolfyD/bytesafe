@@ -353,5 +353,13 @@ namespace WolfPaw_SimpleByteCrypt2
 				setLabels();
 			}
 		}
+
+		private void btn_Test_Click(object sender, EventArgs e)
+		{
+			string fk = c_KeyFunctions.generateFakeKey();
+			string hidden = c_KeyFunctions.hideKey(tb_Pwd.Text, fk);
+			string ok = c_KeyFunctions.getHiddenKey(hidden);
+			Console.WriteLine("\r\n\r\n" + fk + "\r\n\r\n" + hidden + "\r\n\r\n" + ok);
+		}
 	}
 }

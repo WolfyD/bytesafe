@@ -26,6 +26,11 @@ namespace WolfPaw_SimpleByteCrypt2
 			tb_Decoded.Text = Properties.Settings.Default.s_DecodedDir;
 			cb_AddDate.Checked = Properties.Settings.Default.s_DateToFilename;
 			num_BufferSize.Value = Properties.Settings.Default.s_defaultBufferLength;
+
+			cb_MixSections.Checked = Properties.Settings.Default.y_MixPass;
+			cb_ShiftSections.Checked = Properties.Settings.Default.y_ShiftPasswordSections;
+			cb_ShiftChars.Checked = Properties.Settings.Default.y_ShiftBytes;
+			cb_HidePass.Checked = Properties.Settings.Default.y_HiddenPassword;
 		}
 
 		private void btn_Save_Click(object sender, EventArgs e)
@@ -34,6 +39,12 @@ namespace WolfPaw_SimpleByteCrypt2
 			Properties.Settings.Default.s_DecodedDir = tb_Decoded.Text;
 			Properties.Settings.Default.s_DateToFilename = cb_AddDate.Checked;
 			Properties.Settings.Default.s_defaultBufferLength = (int)num_BufferSize.Value;
+
+			Properties.Settings.Default.y_MixPass = cb_MixSections.Checked;
+			Properties.Settings.Default.y_ShiftPasswordSections = cb_ShiftSections.Checked;
+			Properties.Settings.Default.y_ShiftBytes = cb_ShiftChars.Checked;
+			Properties.Settings.Default.y_HiddenPassword = cb_HidePass.Checked;
+
 			Properties.Settings.Default.Save();
 			this.Close();
 		}

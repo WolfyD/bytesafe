@@ -135,81 +135,22 @@ namespace WolfPaw_SimpleByteCrypt2
             {
                 tmp += v.TotalMilliseconds.ToString().Substring(v.TotalMilliseconds.ToString().IndexOf(',') + 1);
             }
-
-
-
-            //MessageBox.Show(tmp);
+			
 
             int tLen = tmp.Length;
             int splitw = tLen / 8;
 
-            List<string> tmpList0 = new List<string>();
-            string sha5s = "";
-            List<string> sha5List0 = new List<string>();
-            List<byte[]> sha1s = new List<byte[]>();
 
-            string ttmp = "";
+			generatedKey = c_KeyFunctions.generateKey(tmp, splitw);
 
-            for (int i = 0; i < 8; i++)
-            {
-                if(tmp == "") { break; }
-                if (tmp.Length >= splitw * 2)
-                {
-                    ttmp = tmp.Substring(0, splitw);
-                }else
-                {
-                    ttmp = tmp.Substring(0);
-                }
-
-                tmpList0.Add(ttmp);
-                tmp = tmp.Remove(0, ttmp.Length);
-            }
-
-            string tmp2 = "";
-
-            foreach(string s in tmpList0)
-            {
-                sha5s += Encoding.UTF8.GetString(sha5.ComputeHash(Encoding.UTF8.GetBytes(s)));
-            }
-
-            int sha5len = sha5s.Length;
-            int sha1wid = sha5len / 16;
-            string shatmp = "";
-
-            for (int i = 0; i < 16; i++)
-            {
-                if (sha5s == "") { break; }
-                if (sha5s.Length >= sha1wid * 2)
-                {
-                    shatmp = sha5s.Substring(0, sha1wid);
-                }
-                else
-                {
-                    shatmp = sha5s.Substring(0);
-                }
-
-                sha5List0.Add(shatmp);
-                sha5s = sha5s.Remove(0, shatmp.Length);
-            }
-
-            string FinalKey = "";
-
-            foreach(string s in sha5List0)
-            {
-                sha1s.Add(sha1.ComputeHash(Encoding.UTF8.GetBytes(s)));
-            }
-
-            foreach(byte[] bb in sha1s)
-            {
-                foreach(byte b in bb)
-                {
-                    Thread.Sleep(2);
-                    int ii = new Random(Environment.TickCount).Next(0, 10000);
-                    FinalKey += ii < 5000 ? b.ToString("X2").ToUpper() : b.ToString("X2").ToLower();
-                }
-            }
-
-            generatedKey = FinalKey;
+			if (Properties.Settings.Default.y_MixPass)
+			{
+				generatedKey = c_KeyFunctions.paritySwitch(generatedKey);
+			}
+			if (Properties.Settings.Default.y_ShiftPasswordSections)
+			{
+				//generatedKey = c_KeyFunctions.
+			}
 
             btn_UseKey.Enabled = true;
 
