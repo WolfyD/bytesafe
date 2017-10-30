@@ -21,6 +21,7 @@ namespace WolfPaw_SimpleByteCrypt2
 		long fileSize = 0;
 		bool run = false;
 		bool decode = false;
+		String generatedKey = "";
 		List<string> files = new List<string>();
 
 		public Form1()
@@ -105,8 +106,37 @@ namespace WolfPaw_SimpleByteCrypt2
 			return fn;
 		}
 
+		public void getPassword()
+		{
+			if (Properties.Settings.Default.y_ShiftByteValues)
+			{
+				generatedKey = c_KeyFunctions.shiftValues(generatedKey, false);
+			}
+			if (Properties.Settings.Default.y_HiddenPassword)
+			{
+				generatedKey = c_KeyFunctions.getHiddenKey(generatedKey);
+			}
+			if (Properties.Settings.Default.y_ShiftBytes)
+			{
+				generatedKey = c_KeyFunctions.shiftString(generatedKey, false);
+			}
+			if (Properties.Settings.Default.y_ShiftPasswordSections)
+			{
+				generatedKey = c_KeyFunctions.sectionShift(generatedKey, false);
+			}
+
+			generatedKey = c_KeyFunctions.parityFix(generatedKey);
+
+		}
+
 		private void btn_Start_Click(object sender, EventArgs e)
 		{
+			if(tb_Pwd.Text != "")
+			{
+				generatedKey = tb_Pwd.Text;
+				getPassword();
+			}
+
 			if (cb_Decode.Checked)
 			{
 				if(Properties.Settings.Default.s_DecodedDir == "" || !Directory.Exists(Properties.Settings.Default.s_DecodedDir))
@@ -140,7 +170,7 @@ namespace WolfPaw_SimpleByteCrypt2
 
 		public void _start(string s, string outs)
 		{
-			codeKey = tb_Pwd.Text;
+			codeKey = generatedKey;
 			decode = cb_Decode.Checked;
 
 			if (s != "" && File.Exists(s) && outs != "" && codeKey != "")
@@ -356,10 +386,27 @@ namespace WolfPaw_SimpleByteCrypt2
 
 		private void btn_Test_Click(object sender, EventArgs e)
 		{
+			string rk = c_KeyFunctions.generateFakeKey();
+
+			Console.WriteLine("----------ORIGINAL KEY----------\r\n" + rk + "\r\n(--------------------------------\r\n");
+
 			string fk = c_KeyFunctions.generateFakeKey();
-			string hidden = c_KeyFunctions.hideKey(tb_Pwd.Text, fk);
-			string ok = c_KeyFunctions.getHiddenKey(hidden);
-			Console.WriteLine("\r\n\r\n" + fk + "\r\n\r\n" + hidden + "\r\n\r\n" + ok);
+			string key = c_KeyFunctions.paritySwitch(rk);
+			key = c_KeyFunctions.sectionShift(key, true);
+			key = c_KeyFunctions.shiftString(key, true);
+			key = c_KeyFunctions.hideKey(key, fk);
+			key = c_KeyFunctions.shiftValues(key, true);
+
+			Console.WriteLine("----------FULLY HIDDEN KEY----------\r\n" + key + "\r\n------------------------------------\r\n");
+
+			key = c_KeyFunctions.shiftValues(key, false);
+			key = c_KeyFunctions.getHiddenKey(key);
+			key = c_KeyFunctions.shiftString(key, false);
+			key = c_KeyFunctions.sectionShift(key, false);
+			key = c_KeyFunctions.parityFix(key);
+
+			Console.WriteLine("----------RECOVERED KEY----------\r\n" + key + "\r\n---------------------------------\r\n");
+			
 		}
 	}
 }

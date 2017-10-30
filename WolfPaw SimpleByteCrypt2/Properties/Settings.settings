@@ -23,19 +23,13 @@
     <Setting Name="y_ShiftPasswordSections" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="y_SectionShiftValue" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
     <Setting Name="y_ShiftBytes" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="y_ByteShiftValue" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="y_MixFileBytes" Type="System.Boolean" Scope="User">
+    <Setting Name="y_HiddenPassword" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="y_HiddenPassword" Type="System.Boolean" Scope="User">
+    <Setting Name="y_ShiftByteValues" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

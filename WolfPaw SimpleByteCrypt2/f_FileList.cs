@@ -39,17 +39,20 @@ namespace WolfPaw_SimpleByteCrypt2
 		{
 			foreach (String s in files)
 			{
-				using (var r = File.OpenRead(s))
+				if (File.Exists(s))
 				{
-					long i = r.Length;
+					using (var r = File.OpenRead(s))
+					{
+						long i = r.Length;
 
-					myLVI lvi = new myLVI();
-					lvi.parent = lv_List;
-					lvi.index = files.IndexOf(s);
-					lvi.files = files;
-					lvi.Text = s;
-					lvi.SubItems.Add(i + "");
-					lv_List.Items.Add(lvi);
+						myLVI lvi = new myLVI();
+						lvi.parent = lv_List;
+						lvi.index = files.IndexOf(s);
+						lvi.files = files;
+						lvi.Text = s;
+						lvi.SubItems.Add(i + "");
+						lv_List.Items.Add(lvi);
+					}
 				}
 			}
 		}

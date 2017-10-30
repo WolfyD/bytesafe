@@ -45,15 +45,15 @@
 			this.label5 = new System.Windows.Forms.Label();
 			this.num_BufferSize = new System.Windows.Forms.NumericUpDown();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.label6 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label8 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
-			this.cb_MixSections = new System.Windows.Forms.CheckBox();
-			this.cb_ShiftSections = new System.Windows.Forms.CheckBox();
-			this.cb_ShiftChars = new System.Windows.Forms.CheckBox();
 			this.cb_HidePass = new System.Windows.Forms.CheckBox();
+			this.cb_ShiftChars = new System.Windows.Forms.CheckBox();
+			this.cb_ShiftSections = new System.Windows.Forms.CheckBox();
+			this.cb_ChangeByteValues = new System.Windows.Forms.CheckBox();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label9 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.num_BufferSize)).BeginInit();
@@ -232,7 +232,7 @@
 			this.groupBox3.Controls.Add(this.cb_HidePass);
 			this.groupBox3.Controls.Add(this.cb_ShiftChars);
 			this.groupBox3.Controls.Add(this.cb_ShiftSections);
-			this.groupBox3.Controls.Add(this.cb_MixSections);
+			this.groupBox3.Controls.Add(this.cb_ChangeByteValues);
 			this.groupBox3.Controls.Add(this.label10);
 			this.groupBox3.Controls.Add(this.label9);
 			this.groupBox3.Controls.Add(this.label8);
@@ -245,41 +245,41 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Security features";
 			// 
-			// label6
+			// cb_HidePass
 			// 
-			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(6, 26);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(119, 13);
-			this.label6.TabIndex = 0;
-			this.label6.Text = "Mix password sections: ";
+			this.cb_HidePass.AutoSize = true;
+			this.cb_HidePass.Location = new System.Drawing.Point(154, 82);
+			this.cb_HidePass.Name = "cb_HidePass";
+			this.cb_HidePass.Size = new System.Drawing.Size(15, 14);
+			this.cb_HidePass.TabIndex = 8;
+			this.cb_HidePass.UseVisualStyleBackColor = true;
 			// 
-			// label7
+			// cb_ShiftChars
 			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(6, 54);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(124, 13);
-			this.label7.TabIndex = 1;
-			this.label7.Text = "Shift password sections: ";
+			this.cb_ShiftChars.AutoSize = true;
+			this.cb_ShiftChars.Location = new System.Drawing.Point(154, 54);
+			this.cb_ShiftChars.Name = "cb_ShiftChars";
+			this.cb_ShiftChars.Size = new System.Drawing.Size(15, 14);
+			this.cb_ShiftChars.TabIndex = 7;
+			this.cb_ShiftChars.UseVisualStyleBackColor = true;
 			// 
-			// label8
+			// cb_ShiftSections
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(6, 82);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(135, 13);
-			this.label8.TabIndex = 2;
-			this.label8.Text = "Shift password characters: ";
+			this.cb_ShiftSections.AutoSize = true;
+			this.cb_ShiftSections.Location = new System.Drawing.Point(154, 26);
+			this.cb_ShiftSections.Name = "cb_ShiftSections";
+			this.cb_ShiftSections.Size = new System.Drawing.Size(15, 14);
+			this.cb_ShiftSections.TabIndex = 6;
+			this.cb_ShiftSections.UseVisualStyleBackColor = true;
 			// 
-			// label9
+			// cb_ChangeByteValues
 			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(6, 110);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(133, 13);
-			this.label9.TabIndex = 3;
-			this.label9.Text = "Hide password within text: ";
+			this.cb_ChangeByteValues.AutoSize = true;
+			this.cb_ChangeByteValues.Location = new System.Drawing.Point(154, 110);
+			this.cb_ChangeByteValues.Name = "cb_ChangeByteValues";
+			this.cb_ChangeByteValues.Size = new System.Drawing.Size(15, 14);
+			this.cb_ChangeByteValues.TabIndex = 5;
+			this.cb_ChangeByteValues.UseVisualStyleBackColor = true;
 			// 
 			// label10
 			// 
@@ -290,41 +290,41 @@
 			this.label10.TabIndex = 4;
 			this.label10.Text = "--More comming soon--";
 			// 
-			// cb_MixSections
+			// label9
 			// 
-			this.cb_MixSections.AutoSize = true;
-			this.cb_MixSections.Location = new System.Drawing.Point(154, 25);
-			this.cb_MixSections.Name = "cb_MixSections";
-			this.cb_MixSections.Size = new System.Drawing.Size(15, 14);
-			this.cb_MixSections.TabIndex = 5;
-			this.cb_MixSections.UseVisualStyleBackColor = true;
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(6, 83);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(133, 13);
+			this.label9.TabIndex = 3;
+			this.label9.Text = "Hide password within text: ";
 			// 
-			// cb_ShiftSections
+			// label8
 			// 
-			this.cb_ShiftSections.AutoSize = true;
-			this.cb_ShiftSections.Location = new System.Drawing.Point(154, 54);
-			this.cb_ShiftSections.Name = "cb_ShiftSections";
-			this.cb_ShiftSections.Size = new System.Drawing.Size(15, 14);
-			this.cb_ShiftSections.TabIndex = 6;
-			this.cb_ShiftSections.UseVisualStyleBackColor = true;
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(6, 55);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(135, 13);
+			this.label8.TabIndex = 2;
+			this.label8.Text = "Shift password characters: ";
 			// 
-			// cb_ShiftChars
+			// label7
 			// 
-			this.cb_ShiftChars.AutoSize = true;
-			this.cb_ShiftChars.Location = new System.Drawing.Point(154, 82);
-			this.cb_ShiftChars.Name = "cb_ShiftChars";
-			this.cb_ShiftChars.Size = new System.Drawing.Size(15, 14);
-			this.cb_ShiftChars.TabIndex = 7;
-			this.cb_ShiftChars.UseVisualStyleBackColor = true;
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(6, 27);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(124, 13);
+			this.label7.TabIndex = 1;
+			this.label7.Text = "Shift password sections: ";
 			// 
-			// cb_HidePass
+			// label6
 			// 
-			this.cb_HidePass.AutoSize = true;
-			this.cb_HidePass.Location = new System.Drawing.Point(154, 110);
-			this.cb_HidePass.Name = "cb_HidePass";
-			this.cb_HidePass.Size = new System.Drawing.Size(15, 14);
-			this.cb_HidePass.TabIndex = 8;
-			this.cb_HidePass.UseVisualStyleBackColor = true;
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(6, 111);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(138, 13);
+			this.label6.TabIndex = 0;
+			this.label6.Text = "Change byte values in key: ";
 			// 
 			// f_Settings
 			// 
@@ -370,7 +370,7 @@
 		private System.Windows.Forms.CheckBox cb_HidePass;
 		private System.Windows.Forms.CheckBox cb_ShiftChars;
 		private System.Windows.Forms.CheckBox cb_ShiftSections;
-		private System.Windows.Forms.CheckBox cb_MixSections;
+		private System.Windows.Forms.CheckBox cb_ChangeByteValues;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.Label label8;

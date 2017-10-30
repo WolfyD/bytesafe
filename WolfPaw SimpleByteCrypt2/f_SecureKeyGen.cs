@@ -142,6 +142,27 @@ namespace WolfPaw_SimpleByteCrypt2
 
 
 			generatedKey = c_KeyFunctions.generateKey(tmp, splitw);
+			generatedKey = c_KeyFunctions.paritySwitch(generatedKey);
+
+			if (Properties.Settings.Default.y_ShiftPasswordSections)
+			{
+				generatedKey = c_KeyFunctions.sectionShift(generatedKey, true);
+			}
+			if (Properties.Settings.Default.y_ShiftBytes)
+			{
+				generatedKey = c_KeyFunctions.shiftString(generatedKey, true);
+			}
+			if (Properties.Settings.Default.y_HiddenPassword)
+			{
+				string fk = c_KeyFunctions.generateFakeKey();
+				generatedKey = c_KeyFunctions.hideKey(generatedKey, fk);
+			}
+			if (Properties.Settings.Default.y_ShiftByteValues)
+			{
+				generatedKey = c_KeyFunctions.shiftValues(generatedKey, true);
+			}
+			
+			
 
 			if (Properties.Settings.Default.y_MixPass)
 			{

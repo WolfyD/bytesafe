@@ -241,7 +241,6 @@
 			this.btn_Test.TabIndex = 17;
 			this.btn_Test.Text = "TEST";
 			this.btn_Test.UseVisualStyleBackColor = true;
-			this.btn_Test.Visible = false;
 			this.btn_Test.Click += new System.EventHandler(this.btn_Test_Click);
 			// 
 			// Form1

@@ -109,18 +109,6 @@ namespace WolfPaw_SimpleByteCrypt2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int y_SectionShiftValue {
-            get {
-                return ((int)(this["y_SectionShiftValue"]));
-            }
-            set {
-                this["y_SectionShiftValue"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool y_ShiftBytes {
             get {
@@ -133,30 +121,6 @@ namespace WolfPaw_SimpleByteCrypt2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int y_ByteShiftValue {
-            get {
-                return ((int)(this["y_ByteShiftValue"]));
-            }
-            set {
-                this["y_ByteShiftValue"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool y_MixFileBytes {
-            get {
-                return ((bool)(this["y_MixFileBytes"]));
-            }
-            set {
-                this["y_MixFileBytes"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool y_HiddenPassword {
             get {
@@ -164,6 +128,18 @@ namespace WolfPaw_SimpleByteCrypt2.Properties {
             }
             set {
                 this["y_HiddenPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool y_ShiftByteValues {
+            get {
+                return ((bool)(this["y_ShiftByteValues"]));
+            }
+            set {
+                this["y_ShiftByteValues"] = value;
             }
         }
     }

@@ -9,6 +9,24 @@ using System.Threading;
 
 namespace WolfPaw_SimpleByteCrypt2
 {
+	/// <summary>
+	/// <para>TO ENCRYPT:</para>
+	/// <para>Generate key</para>
+	/// <para>Parity Switch</para>
+	/// <para>Section shift (Left)</para>
+	/// <para>Shift String (Left)</para>
+	/// <para>Generate Fake Key</para>
+	/// <para>Hide Key</para>
+	/// <para>Shift Values (Up)</para>
+	/// <para>-</para>
+	/// <para>-</para>
+	/// <para>TO DECRYPT:</para>
+	/// <para>Shift Values (Down)</para>
+	/// <para>Get Hidden Key</para>
+	/// <para>Shift String (Right)</para>
+	/// <para>Section Shift (Right)</para>
+	/// <para>Parity Fix</para>
+	/// </summary>
 	public static class c_KeyFunctions
 	{
 		public static SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider();
@@ -242,7 +260,17 @@ namespace WolfPaw_SimpleByteCrypt2
 			}
 			else
 			{
+				tmp0 = l[l.IndexOf(l.Last())];
+				tmp1 = l[l.IndexOf(l.Last()) - 1];
+				l.Remove(l[l.IndexOf(l.Last())]);
+				l.Remove(l[l.IndexOf(l.Last())]);
+				l.Insert(0, tmp0);
+				l.Insert(0, tmp1);
+			}
 
+			foreach (String s in l)
+			{
+				k += s;
 			}
 
 			return k;
@@ -293,6 +321,25 @@ namespace WolfPaw_SimpleByteCrypt2
 			}
 
 			return newKey;
+		}
+
+		public static string shiftValues(string key, bool up)
+		{
+			string k = "";
+
+			foreach (char c in key)
+			{
+				if (up)
+				{
+					k += (char)(c + 1);
+				}
+				else
+				{
+					k += (char)(c - 1);
+				}
+			}
+
+			return k;
 		}
 	}
 }
