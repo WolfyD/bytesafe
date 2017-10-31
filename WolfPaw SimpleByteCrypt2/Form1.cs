@@ -229,6 +229,16 @@ namespace WolfPaw_SimpleByteCrypt2
 				if (Properties.Settings.Default.s_EncodedDir == "" || !Directory.Exists(Properties.Settings.Default.s_EncodedDir))
 				{ MessageBox.Show("It seems that you haven't filled out your Encode output directory.\r\nPlease make sure you do.", "Check your settings!"); button1_Click(null, null); return; }
 			}
+
+			run = true;
+
+			Thread tt = new Thread(new ThreadStart(_start));
+			tt.Start();
+		}
+
+
+		public void _start()
+		{
 			foreach (String s in files)
 			{
 				if (File.Exists(s))
@@ -245,21 +255,15 @@ namespace WolfPaw_SimpleByteCrypt2
 
 					//fileInput = s;
 
-					_start(s, fo);
+					codeKey = generatedKey;
+					decode = decrypt;
+
+					if (s != "" && File.Exists(s) && fo != "" && codeKey != "")
+					{
+						Thread t = new Thread(() => start(s, fo));
+						t.Start();
+					}
 				}
-			}
-		}
-
-		public void _start(string s, string outs)
-		{
-			codeKey = generatedKey;
-			decode = decrypt;
-
-			if (s != "" && File.Exists(s) && outs != "" && codeKey != "")
-			{
-				run = true;
-				Thread t = new Thread(() => start(s, outs));
-				t.Start();
 			}
 		}
 
