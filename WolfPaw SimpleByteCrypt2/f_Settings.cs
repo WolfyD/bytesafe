@@ -24,6 +24,7 @@ namespace WolfPaw_SimpleByteCrypt2
 		{
 			tb_Encoded.Text = Properties.Settings.Default.s_EncodedDir;
 			tb_Decoded.Text = Properties.Settings.Default.s_DecodedDir;
+			tb_ToEncrypt.Text = Properties.Settings.Default.s_ToEncryptDir;
 			cb_AddDate.Checked = Properties.Settings.Default.s_DateToFilename;
 			num_BufferSize.Value = Properties.Settings.Default.s_defaultBufferLength;
 
@@ -31,12 +32,15 @@ namespace WolfPaw_SimpleByteCrypt2
 			cb_ShiftChars.Checked = Properties.Settings.Default.y_ShiftBytes;
 			cb_HidePass.Checked = Properties.Settings.Default.y_HiddenPassword;
 			cb_ChangeByteValues.Checked = Properties.Settings.Default.y_ShiftByteValues;
+
+			cb_FileSize.Checked = Properties.Settings.Default.s_ShowFileSize;
 		}
 
 		private void btn_Save_Click(object sender, EventArgs e)
 		{
 			Properties.Settings.Default.s_EncodedDir = tb_Encoded.Text;
 			Properties.Settings.Default.s_DecodedDir = tb_Decoded.Text;
+			Properties.Settings.Default.s_ToEncryptDir = tb_ToEncrypt.Text;
 			Properties.Settings.Default.s_DateToFilename = cb_AddDate.Checked;
 			Properties.Settings.Default.s_defaultBufferLength = (int)num_BufferSize.Value;
 
@@ -44,6 +48,8 @@ namespace WolfPaw_SimpleByteCrypt2
 			Properties.Settings.Default.y_ShiftBytes = cb_ShiftChars.Checked;
 			Properties.Settings.Default.y_HiddenPassword = cb_HidePass.Checked;
 			Properties.Settings.Default.y_ShiftByteValues = cb_ChangeByteValues.Checked;
+
+			Properties.Settings.Default.s_ShowFileSize = cb_FileSize.Checked;
 
 			Properties.Settings.Default.Save();
 			this.Close();
@@ -57,6 +63,7 @@ namespace WolfPaw_SimpleByteCrypt2
 		private void btn_BrowseEncoded_Click(object sender, EventArgs e)
 		{
 			SaveFileDialog sfd = new SaveFileDialog();
+			if (tb_Encoded.Text != "" && Directory.Exists(tb_Encoded.Text)) { sfd.FileName = tb_Encoded.Text + "\\SELECT FOLDER"; }
 			sfd.FileName = "SELECT FOLDER";
 			sfd.CheckFileExists = false;
 			sfd.Filter = "*.*|*.*";
@@ -69,12 +76,26 @@ namespace WolfPaw_SimpleByteCrypt2
 		private void btn_BrowseDecoded_Click(object sender, EventArgs e)
 		{
 			SaveFileDialog sfd = new SaveFileDialog();
+			if (tb_Decoded.Text != "" && Directory.Exists(tb_Decoded.Text)) { sfd.FileName = tb_Decoded.Text + "\\SELECT FOLDER"; }
 			sfd.FileName = "SELECT FOLDER";
 			sfd.CheckFileExists = false;
 			sfd.Filter = "*.*|*.*";
 			if (sfd.ShowDialog() == DialogResult.OK)
 			{
 				tb_Decoded.Text = Directory.GetParent(sfd.FileName).ToString();
+			}
+		}
+
+		private void btn_BrowseToEncrypt_Click(object sender, EventArgs e)
+		{
+			SaveFileDialog sfd = new SaveFileDialog();
+			if(tb_ToEncrypt.Text != "" && Directory.Exists(tb_ToEncrypt.Text)) { sfd.FileName = tb_ToEncrypt.Text + "\\SELECT FOLDER"; }
+			sfd.FileName = "SELECT FOLDER";
+			sfd.CheckFileExists = false;
+			sfd.Filter = "*.*|*.*";
+			if (sfd.ShowDialog() == DialogResult.OK)
+			{
+				tb_ToEncrypt.Text = Directory.GetParent(sfd.FileName).ToString();
 			}
 		}
 	}

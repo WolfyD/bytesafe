@@ -52,12 +52,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="f_FileList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="f_FileList.Designer.cs">
-      <DependentUpon>f_FileList.cs</DependentUpon>
-    </Compile>
     <Compile Include="f_SecureKeyGen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,9 +69,6 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="f_FileList.resx">
-      <DependentUpon>f_FileList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="f_SecureKeyGen.resx">
       <DependentUpon>f_SecureKeyGen.cs</DependentUpon>
@@ -110,6 +101,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\browse_folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clear1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clear2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openfile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_magnify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_go.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
