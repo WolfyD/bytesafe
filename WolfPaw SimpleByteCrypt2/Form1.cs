@@ -327,7 +327,6 @@ namespace WolfPaw_SimpleByteCrypt2
 						}
 						bytes = null;
 						chars = null;
-						GC.Collect(100, GCCollectionMode.Forced, true);
 					}
 					catch (Exception ex)
 					{
@@ -548,6 +547,7 @@ namespace WolfPaw_SimpleByteCrypt2
 		{
 			lv_List.Items.Clear();
 			pb_Progress.Value = 0;
+			lbl_NumOfFiles.Text = files.Count + " Files\r\nloaded";
 
 			bool fs = Properties.Settings.Default.s_ShowFileSize;
 

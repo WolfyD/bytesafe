@@ -66,6 +66,7 @@
 			this.btn_RemoveSelectedFiles = new System.Windows.Forms.ToolStripMenuItem();
 			this.btn_ClearAllFiles = new System.Windows.Forms.ToolStripMenuItem();
 			this.pb_Progress = new System.Windows.Forms.ProgressBar();
+			this.lbl_NumOfFiles = new System.Windows.Forms.Label();
 			this.contextMenuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.cms_List.SuspendLayout();
@@ -226,7 +227,7 @@
 			// 
 			this.btn_OpenToEncrypt.Image = ((System.Drawing.Image)(resources.GetObject("btn_OpenToEncrypt.Image")));
 			this.btn_OpenToEncrypt.Name = "btn_OpenToEncrypt";
-			this.btn_OpenToEncrypt.Size = new System.Drawing.Size(152, 22);
+			this.btn_OpenToEncrypt.Size = new System.Drawing.Size(131, 22);
 			this.btn_OpenToEncrypt.Text = "To Encrypt";
 			this.btn_OpenToEncrypt.Click += new System.EventHandler(this.btn_OpenToEncrypt_Click);
 			// 
@@ -234,7 +235,7 @@
 			// 
 			this.btn_OpenEncrypted.Image = ((System.Drawing.Image)(resources.GetObject("btn_OpenEncrypted.Image")));
 			this.btn_OpenEncrypted.Name = "btn_OpenEncrypted";
-			this.btn_OpenEncrypted.Size = new System.Drawing.Size(152, 22);
+			this.btn_OpenEncrypted.Size = new System.Drawing.Size(131, 22);
 			this.btn_OpenEncrypted.Text = "Encrypted";
 			this.btn_OpenEncrypted.Click += new System.EventHandler(this.btn_OpenEncrypted_Click);
 			// 
@@ -242,7 +243,7 @@
 			// 
 			this.btn_OpenDecrypted.Image = ((System.Drawing.Image)(resources.GetObject("btn_OpenDecrypted.Image")));
 			this.btn_OpenDecrypted.Name = "btn_OpenDecrypted";
-			this.btn_OpenDecrypted.Size = new System.Drawing.Size(152, 22);
+			this.btn_OpenDecrypted.Size = new System.Drawing.Size(131, 22);
 			this.btn_OpenDecrypted.Text = "Decrypted";
 			this.btn_OpenDecrypted.Click += new System.EventHandler(this.btn_OpenDecrypted_Click);
 			// 
@@ -263,7 +264,7 @@
 			// 
 			this.btn_BrowseToEncrypt.Image = ((System.Drawing.Image)(resources.GetObject("btn_BrowseToEncrypt.Image")));
 			this.btn_BrowseToEncrypt.Name = "btn_BrowseToEncrypt";
-			this.btn_BrowseToEncrypt.Size = new System.Drawing.Size(152, 22);
+			this.btn_BrowseToEncrypt.Size = new System.Drawing.Size(131, 22);
 			this.btn_BrowseToEncrypt.Text = "To Encrypt";
 			this.btn_BrowseToEncrypt.Click += new System.EventHandler(this.btn_BrowseToEncrypt_Click);
 			// 
@@ -271,7 +272,7 @@
 			// 
 			this.btn_BrowseEncrypted.Image = ((System.Drawing.Image)(resources.GetObject("btn_BrowseEncrypted.Image")));
 			this.btn_BrowseEncrypted.Name = "btn_BrowseEncrypted";
-			this.btn_BrowseEncrypted.Size = new System.Drawing.Size(152, 22);
+			this.btn_BrowseEncrypted.Size = new System.Drawing.Size(131, 22);
 			this.btn_BrowseEncrypted.Text = "Encrypted";
 			this.btn_BrowseEncrypted.Click += new System.EventHandler(this.btn_BrowseEncrypted_Click);
 			// 
@@ -279,7 +280,7 @@
 			// 
 			this.btn_BrowseDecrypted.Image = ((System.Drawing.Image)(resources.GetObject("btn_BrowseDecrypted.Image")));
 			this.btn_BrowseDecrypted.Name = "btn_BrowseDecrypted";
-			this.btn_BrowseDecrypted.Size = new System.Drawing.Size(152, 22);
+			this.btn_BrowseDecrypted.Size = new System.Drawing.Size(131, 22);
 			this.btn_BrowseDecrypted.Text = "Decrypted";
 			this.btn_BrowseDecrypted.Click += new System.EventHandler(this.btn_BrowseDecrypted_Click);
 			// 
@@ -414,12 +415,22 @@
 			this.pb_Progress.Size = new System.Drawing.Size(937, 10);
 			this.pb_Progress.TabIndex = 21;
 			// 
+			// lbl_NumOfFiles
+			// 
+			this.lbl_NumOfFiles.AutoSize = true;
+			this.lbl_NumOfFiles.Location = new System.Drawing.Point(9, 68);
+			this.lbl_NumOfFiles.Name = "lbl_NumOfFiles";
+			this.lbl_NumOfFiles.Size = new System.Drawing.Size(39, 26);
+			this.lbl_NumOfFiles.TabIndex = 22;
+			this.lbl_NumOfFiles.Text = "0 Files\r\nloaded";
+			// 
 			// Form1
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(937, 280);
+			this.Controls.Add(this.lbl_NumOfFiles);
 			this.Controls.Add(this.pb_Progress);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.lv_List);
@@ -482,6 +493,7 @@
 		private System.Windows.Forms.ToolStripMenuItem btn_BrowseDecrypted;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+		private System.Windows.Forms.Label lbl_NumOfFiles;
 	}
 }
 
