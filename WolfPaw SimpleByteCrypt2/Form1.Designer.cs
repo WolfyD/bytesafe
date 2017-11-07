@@ -59,8 +59,8 @@
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.btn_ClearFileList = new System.Windows.Forms.ToolStripButton();
 			this.lv_List = new System.Windows.Forms.ListView();
-			this.ch_Filename = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.ch_Size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.ch_Filename = new System.Windows.Forms.ColumnHeader();
+			this.ch_Size = new System.Windows.Forms.ColumnHeader();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cms_List = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.btn_RemoveSelectedFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,7 +86,7 @@
 			// 
 			this.tb_Pwd.AllowDrop = true;
 			this.tb_Pwd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.tb_Pwd.Location = new System.Drawing.Point(101, 207);
 			this.tb_Pwd.Multiline = true;
 			this.tb_Pwd.Name = "tb_Pwd";
@@ -102,7 +102,7 @@
 			this.btn_Start.Name = "btn_Start";
 			this.btn_Start.Size = new System.Drawing.Size(75, 23);
 			this.btn_Start.TabIndex = 7;
-			this.btn_Start.Text = "Start";
+			this.btn_Start.Text = "Start Gomb";
 			this.btn_Start.UseVisualStyleBackColor = true;
 			this.btn_Start.Click += new System.EventHandler(this.btn_Start_Click);
 			// 
@@ -131,8 +131,8 @@
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_MultipleFiles,
-            this.btn_Directory});
+			this.btn_MultipleFiles,
+			this.btn_Directory});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
 			this.contextMenuStrip1.Size = new System.Drawing.Size(175, 48);
 			// 
@@ -167,18 +167,18 @@
 			this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
 			this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_OpenFiles,
-            this.btn_OpenFolder,
-            this.toolStripSeparator4,
-            this.btn_Open,
-            this.btn_Browse,
-            this.toolStripSeparator1,
-            this.cb_EncodeDecode,
-            this.btn_Settings,
-            this.toolStripSeparator2,
-            this.btn_GenerateKey,
-            this.toolStripSeparator3,
-            this.btn_ClearFileList});
+			this.btn_OpenFiles,
+			this.btn_OpenFolder,
+			this.toolStripSeparator4,
+			this.btn_Open,
+			this.btn_Browse,
+			this.toolStripSeparator1,
+			this.cb_EncodeDecode,
+			this.btn_Settings,
+			this.toolStripSeparator2,
+			this.btn_GenerateKey,
+			this.toolStripSeparator3,
+			this.btn_ClearFileList});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip1.Name = "toolStrip1";
 			this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -213,9 +213,9 @@
 			// btn_Open
 			// 
 			this.btn_Open.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_OpenToEncrypt,
-            this.btn_OpenEncrypted,
-            this.btn_OpenDecrypted});
+			this.btn_OpenToEncrypt,
+			this.btn_OpenEncrypted,
+			this.btn_OpenDecrypted});
 			this.btn_Open.Image = global::WolfPaw_SimpleByteCrypt2.Properties.Resources.browse_folder;
 			this.btn_Open.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btn_Open.Name = "btn_Open";
@@ -227,7 +227,7 @@
 			// 
 			this.btn_OpenToEncrypt.Image = ((System.Drawing.Image)(resources.GetObject("btn_OpenToEncrypt.Image")));
 			this.btn_OpenToEncrypt.Name = "btn_OpenToEncrypt";
-			this.btn_OpenToEncrypt.Size = new System.Drawing.Size(131, 22);
+			this.btn_OpenToEncrypt.Size = new System.Drawing.Size(130, 22);
 			this.btn_OpenToEncrypt.Text = "To Encrypt";
 			this.btn_OpenToEncrypt.Click += new System.EventHandler(this.btn_OpenToEncrypt_Click);
 			// 
@@ -235,7 +235,7 @@
 			// 
 			this.btn_OpenEncrypted.Image = ((System.Drawing.Image)(resources.GetObject("btn_OpenEncrypted.Image")));
 			this.btn_OpenEncrypted.Name = "btn_OpenEncrypted";
-			this.btn_OpenEncrypted.Size = new System.Drawing.Size(131, 22);
+			this.btn_OpenEncrypted.Size = new System.Drawing.Size(130, 22);
 			this.btn_OpenEncrypted.Text = "Encrypted";
 			this.btn_OpenEncrypted.Click += new System.EventHandler(this.btn_OpenEncrypted_Click);
 			// 
@@ -243,16 +243,16 @@
 			// 
 			this.btn_OpenDecrypted.Image = ((System.Drawing.Image)(resources.GetObject("btn_OpenDecrypted.Image")));
 			this.btn_OpenDecrypted.Name = "btn_OpenDecrypted";
-			this.btn_OpenDecrypted.Size = new System.Drawing.Size(131, 22);
+			this.btn_OpenDecrypted.Size = new System.Drawing.Size(130, 22);
 			this.btn_OpenDecrypted.Text = "Decrypted";
 			this.btn_OpenDecrypted.Click += new System.EventHandler(this.btn_OpenDecrypted_Click);
 			// 
 			// btn_Browse
 			// 
 			this.btn_Browse.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_BrowseToEncrypt,
-            this.btn_BrowseEncrypted,
-            this.btn_BrowseDecrypted});
+			this.btn_BrowseToEncrypt,
+			this.btn_BrowseEncrypted,
+			this.btn_BrowseDecrypted});
 			this.btn_Browse.Image = global::WolfPaw_SimpleByteCrypt2.Properties.Resources.folder_go;
 			this.btn_Browse.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.btn_Browse.Name = "btn_Browse";
@@ -264,7 +264,7 @@
 			// 
 			this.btn_BrowseToEncrypt.Image = ((System.Drawing.Image)(resources.GetObject("btn_BrowseToEncrypt.Image")));
 			this.btn_BrowseToEncrypt.Name = "btn_BrowseToEncrypt";
-			this.btn_BrowseToEncrypt.Size = new System.Drawing.Size(131, 22);
+			this.btn_BrowseToEncrypt.Size = new System.Drawing.Size(130, 22);
 			this.btn_BrowseToEncrypt.Text = "To Encrypt";
 			this.btn_BrowseToEncrypt.Click += new System.EventHandler(this.btn_BrowseToEncrypt_Click);
 			// 
@@ -272,7 +272,7 @@
 			// 
 			this.btn_BrowseEncrypted.Image = ((System.Drawing.Image)(resources.GetObject("btn_BrowseEncrypted.Image")));
 			this.btn_BrowseEncrypted.Name = "btn_BrowseEncrypted";
-			this.btn_BrowseEncrypted.Size = new System.Drawing.Size(131, 22);
+			this.btn_BrowseEncrypted.Size = new System.Drawing.Size(130, 22);
 			this.btn_BrowseEncrypted.Text = "Encrypted";
 			this.btn_BrowseEncrypted.Click += new System.EventHandler(this.btn_BrowseEncrypted_Click);
 			// 
@@ -280,7 +280,7 @@
 			// 
 			this.btn_BrowseDecrypted.Image = ((System.Drawing.Image)(resources.GetObject("btn_BrowseDecrypted.Image")));
 			this.btn_BrowseDecrypted.Name = "btn_BrowseDecrypted";
-			this.btn_BrowseDecrypted.Size = new System.Drawing.Size(131, 22);
+			this.btn_BrowseDecrypted.Size = new System.Drawing.Size(130, 22);
 			this.btn_BrowseDecrypted.Text = "Decrypted";
 			this.btn_BrowseDecrypted.Click += new System.EventHandler(this.btn_BrowseDecrypted_Click);
 			// 
@@ -296,8 +296,8 @@
 			this.cb_EncodeDecode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cb_EncodeDecode.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
 			this.cb_EncodeDecode.Items.AddRange(new object[] {
-            "Encrypt",
-            "Decrypt"});
+			"Encrypt",
+			"Decrypt"});
 			this.cb_EncodeDecode.Name = "cb_EncodeDecode";
 			this.cb_EncodeDecode.Size = new System.Drawing.Size(80, 23);
 			// 
@@ -349,11 +349,11 @@
 			// lv_List
 			// 
 			this.lv_List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.lv_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ch_Filename,
-            this.ch_Size});
+			this.ch_Filename,
+			this.ch_Size});
 			this.lv_List.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.lv_List.FullRowSelect = true;
 			this.lv_List.GridLines = true;
@@ -387,8 +387,8 @@
 			// cms_List
 			// 
 			this.cms_List.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_RemoveSelectedFiles,
-            this.btn_ClearAllFiles});
+			this.btn_RemoveSelectedFiles,
+			this.btn_ClearAllFiles});
 			this.cms_List.Name = "cms_List";
 			this.cms_List.Size = new System.Drawing.Size(188, 48);
 			// 
@@ -409,7 +409,7 @@
 			// pb_Progress
 			// 
 			this.pb_Progress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.pb_Progress.Location = new System.Drawing.Point(0, 272);
 			this.pb_Progress.Name = "pb_Progress";
 			this.pb_Progress.Size = new System.Drawing.Size(937, 10);
